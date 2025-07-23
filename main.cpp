@@ -1,43 +1,42 @@
 #include <iostream>
+#include <string>
+#include <string_view>
 
-double getValue()
+std::string getName(int num)
 {
-    double value{};
-    std::cout << "Enter a double value: ";
-    std::cin >> value;
-    return value;
+    std::cout << "Enter the name of person #" << num << ": ";
+    std::string name;
+    std::getline(std::cin >> std::ws, name);
+
+    return name;
 }
 
-char getTheSymbol()
+int getAge(std::string_view sv)
 {
-    char symbol{};
-    std::cout << "Enter +, -, *, or /: ";
-    std::cin >> symbol;
-    return symbol;
+    std::cout << "Enter the age of " << sv << ": ";
+    int age{};
+    std::cin >> age;
+
+    return age;
 }
 
-double calculate(double first_value, char symbol, double second_value)
+void operation(std::string_view name_1, int age_1, std::string_view name_2, int age_2)
 {
-    double result{};
-
-    if (symbol == '+')
-        result = first_value + second_value;
-    else if (symbol == '-')
-        result = first_value - second_value;
-    else if (symbol == '*')
-        result = first_value * second_value;
-    else if (symbol == '/')
-        result = first_value / second_value;
+    if (age_1 > age_2)
+        std::cout << name_1 << " (age " << age_1 << ") " << "is older than " << name_2 << " (age " << age_2 << ")";
     else
-        return 0.0;
-
-    return result;
+        std::cout << name_2 << " (age " << age_2 << ") " << "is older than " << name_1 << " (age " << age_1 << ")";
 }
 
 int main()
 {
-    double first_value = getValue();
-    double second_value = getValue();
-    char symbol = getTheSymbol();
-    std::cout << "The answer is: " << calculate(first_value, symbol, second_value);
+    std::string name_1 = getName(1);
+    int age_1 = getAge(name_1);
+
+    std::string name_2 = getName(2);
+    int age_2 = getAge(name_2);
+
+    operation(name_1, age_1, name_2, age_2);
+
+    return 0;
 }

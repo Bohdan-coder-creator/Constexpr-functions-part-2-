@@ -1,31 +1,22 @@
 #include <iostream>
 
-double getHeight()
+int getValue()
 {
-    std::cout << "Enter the height of the tower in meters: ";
-    int height{};
-    std::cin >> height;
-    return height;
+    std::cout << "Enter an integer: ";
+
+    int x{};
+    std::cin >> x;
+    return x;
 }
 
-double calculate(int height, int seconds)
+void printCalculation(int x, int y, int z)
 {
-    double gravity = {9.8};
-    double distance_fallen = {gravity * (seconds * seconds) / 2};
-    double ball_height = {height - distance_fallen};
-    if (ball_height < 0.0)
-		return 0.0;
-
-    return ball_height;
+    std::cout << x + (y * z);
 }
 
 int main()
 {
-    double towerHeight {getHeight()};
-    std::cout << "At 0 seconds, the ball is at height: " << calculate(towerHeight, 0) << "\n";
-    std::cout << "At 1 second, the ball is at height: " << calculate(towerHeight, 1) << "\n";
-    std::cout << "At 2 seconds, the ball is at height: " << calculate(towerHeight, 2) << "\n";
-    std::cout << "At 3 seconds, the ball is at height: " << calculate(towerHeight, 3) << "\n";
-    std::cout << "At 4 seconds, the ball is at height: " << calculate(towerHeight, 4) << "\n";
-    std::cout << "At 5 seconds, the ball is at height: " << calculate(towerHeight, 5) << "\n";
+    printCalculation(getValue(), getValue(), getValue()); // this line is ambiguous
+
+    return 0;
 }
