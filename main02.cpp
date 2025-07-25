@@ -1,22 +1,35 @@
 #include <iostream>
 
-int getValue()
+std::string_view getQuantityPhrase(int apple)
 {
-    std::cout << "Enter an integer: ";
-
-    int x{};
-    std::cin >> x;
-    return x;
+    if (apple == 0)
+        return "no";
+    if (apple < 0)
+        return "negative";
+    if (apple == 1)
+        return "a single";
+    if (apple == 2)
+        return "a couple of";
+    if (apple == 3)
+        return "a few";
+    return "many";
 }
 
-void printCalculation(int x, int y, int z)
+std::string_view getApplesPluralized(int qualiteit_van_appels)
 {
-    std::cout << x + (y * z);
+    return (qualiteit_van_appels == 1) ? "apple" : "apples";
 }
 
 int main()
 {
-    printCalculation(getValue(), getValue(), getValue()); // this line is ambiguous
+    constexpr int maryApples { 3 };
+    std::cout << "Mary has " << getQuantityPhrase(maryApples) << ' ' << getApplesPluralized(maryApples) << ".\n";
+
+    std::cout << "How many apples do you have? ";
+    int numApples{};
+    std::cin >> numApples;
+
+    std::cout << "You have " << getQuantityPhrase(numApples) << ' ' << getApplesPluralized(numApples) << ".\n";
 
     return 0;
 }
