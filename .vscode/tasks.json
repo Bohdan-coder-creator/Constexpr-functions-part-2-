@@ -8,6 +8,9 @@
             "args": [
                 "-g",
                 "${workspaceFolder}/main.cpp",
+                "${workspaceFolder}/foo.cpp",
+                "${workspaceFolder}/goo.cpp",
+                "${workspaceFolder}/add.cpp",
                 "-o",
                 "${workspaceFolder}/main.exe"
             ],
