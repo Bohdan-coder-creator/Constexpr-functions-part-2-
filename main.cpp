@@ -1,14 +1,16 @@
-#include "constants.h" // include all the forward declarations
-
+#include "constants.h"
 #include <iostream>
 
 int main()
 {
-    std::cout << "Enter a radius: ";
-    double radius{};
-    std::cin >> radius;
+	std::cout << "How many students are in your class? ";
+	int students{};
+	std::cin >> students;
 
-    std::cout << "The circumference is: " << 2 * radius * constants::pi << '\n';
+	if (students > constants::maxClassSize)
+		std::cout << "There are too many students in this class";
+	else
+		std::cout << "This class isn't too large";
 
-    return 0;
+	return 0;
 }
