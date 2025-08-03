@@ -1,16 +1,31 @@
-#include "constants.h"
 #include <iostream>
+
+void printDigitName(int x)
+{
+    switch (x) // x evaluates to 3
+    {
+    case 1:
+        std::cout << "One";
+        break;
+    case 2:
+        std::cout << "Two";
+        break;
+    case 3:
+        std::cout << "Three"; // execution starts here
+        break; // jump to the end of the switch block
+    default:
+        std::cout << "Unknown";
+        break;
+    }
+
+    // execution continues here
+    std::cout << " Ah-Ah-Ah!";
+}
 
 int main()
 {
-	std::cout << "How many students are in your class? ";
-	int students{};
-	std::cin >> students;
+    printDigitName(3);
+    std::cout << '\n';
 
-	if (students > constants::maxClassSize)
-		std::cout << "There are too many students in this class";
-	else
-		std::cout << "This class isn't too large";
-
-	return 0;
+    return 0;
 }
