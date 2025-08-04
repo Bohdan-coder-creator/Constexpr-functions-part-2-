@@ -1,18 +1,41 @@
 #include <iostream>
 
-int accumulate(int x)
+int calculate(int x, int y, char op)
 {
-    static int sum{ 0 }; // initialize sum to 0 at start of program
-    sum += x;
-    return sum;
+    switch (op)
+    {
+    case '+':
+        return x + y;
+    case '-':
+        return x - y;
+    case '*':
+        return x * y;
+    case '/':
+        return x / y;
+    case '%':
+        return x % y;
+    default:
+        std::cout << "calculate(): Unhandled case\n";
+        return 0;
+    }
 }
 
 int main()
 {
-    std::cout << accumulate(4) << '\n'; // prints 4
-    std::cout << accumulate(3) << '\n'; // prints 7
-    std::cout << accumulate(2) << '\n'; // prints 9
-    std::cout << accumulate(1) << '\n'; // prints 10
+    std::cout << "Enter an integer: ";
+    int x{};
+    std::cin >> x;
+
+    std::cout << "Enter another integer: ";
+    int y{};
+    std::cin >> y;
+
+    std::cout << "Enter a mathematical operator (+, -, *, /, or %): ";
+    char op{};
+    std::cin >> op;
+
+    int result{ calculate(x, y, op) };
+    std::cout << x << ' ' << op << ' ' << y << " is " << result << '\n';
 
     return 0;
 }

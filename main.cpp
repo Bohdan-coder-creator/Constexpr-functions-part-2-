@@ -1,31 +1,60 @@
 #include <iostream>
 
-void printDigitName(int x)
+int calculate(int x, int y, char z)
 {
-    switch (x) // x evaluates to 3
+    switch (z)
     {
-    case 1:
-        std::cout << "One";
-        break;
-    case 2:
-        std::cout << "Two";
-        break;
-    case 3:
-        std::cout << "Three"; // execution starts here
-        break; // jump to the end of the switch block
-    default:
-        std::cout << "Unknown";
-        break;
+        case '-' :
+        {
+            int result = {x - y};
+            std::cout << x << " - " << y << " = " << result;
+            return result;
+        }
+        case '*' :
+        {
+            int result = {x * y};
+            std::cout << x << " * " << y << " = " << result;
+            return result;
+        }
+        case '+' :
+        {
+            int result = {x + y};
+            std::cout << x << " + " << y << " = " << result;
+            return result;
+        }
+        case '%' :
+        {
+            int result = {x % y};
+            std::cout << x << " % " << y << " = " << result;
+            return result;
+        }
+        case '/' :
+        {
+            int result = {x / y};
+            std::cout << x << " / " << y << " = " << result;
+            return result;
+        }
+        default:
+        {
+            std::cout << "You enterd a wrong operator!";
+            return 0;
+        }
     }
-
-    // execution continues here
-    std::cout << " Ah-Ah-Ah!";
 }
 
 int main()
 {
-    printDigitName(3);
-    std::cout << '\n';
+    int x{};
+    int y{};
+    char z{};
+
+    std::cout << "Enter your first number: ";
+    std::cin >> x;
+    std::cout << "Enter your second number: ";
+    std::cin >> y;
+    std::cout << "Enter your operator: ";
+    std::cin >> z;
+    calculate(x, y, z);
 
     return 0;
 }
