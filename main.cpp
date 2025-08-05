@@ -1,60 +1,26 @@
 #include <iostream>
 
-int calculate(int x, int y, char z)
-{
-    switch (z)
-    {
-        case '-' :
-        {
-            int result = {x - y};
-            std::cout << x << " - " << y << " = " << result;
-            return result;
-        }
-        case '*' :
-        {
-            int result = {x * y};
-            std::cout << x << " * " << y << " = " << result;
-            return result;
-        }
-        case '+' :
-        {
-            int result = {x + y};
-            std::cout << x << " + " << y << " = " << result;
-            return result;
-        }
-        case '%' :
-        {
-            int result = {x % y};
-            std::cout << x << " % " << y << " = " << result;
-            return result;
-        }
-        case '/' :
-        {
-            int result = {x / y};
-            std::cout << x << " / " << y << " = " << result;
-            return result;
-        }
-        default:
-        {
-            std::cout << "You enterd a wrong operator!";
-            return 0;
-        }
-    }
-}
-
 int main()
 {
-    int x{};
-    int y{};
-    char z{};
+    for (int i = 1; i < 5; ++i)
+    {
+        for (int j = 1; j < 5; ++j)
+        {
+            std::cout << i << " * " << j << " is " << i*j << '\n';
 
-    std::cout << "Enter your first number: ";
-    std::cin >> x;
-    std::cout << "Enter your second number: ";
-    std::cin >> y;
-    std::cout << "Enter your operator: ";
-    std::cin >> z;
-    calculate(x, y, z);
+            // If the product is divisible by 9, jump to the "end" label
+            if (i*j % 9 == 0)
+            {
+                std::cout << "Found product divisible by 9.  Ending early.\n";
+                goto end;
+            }
+        }
+
+        std::cout << "Incrementing the first factor.\n";
+    }
+
+end:
+    std::cout << "And we're done." << '\n';
 
     return 0;
 }

@@ -1,41 +1,16 @@
 #include <iostream>
-
-int calculate(int x, int y, char op)
-{
-    switch (op)
-    {
-    case '+':
-        return x + y;
-    case '-':
-        return x - y;
-    case '*':
-        return x * y;
-    case '/':
-        return x / y;
-    case '%':
-        return x % y;
-    default:
-        std::cout << "calculate(): Unhandled case\n";
-        return 0;
-    }
-}
+#include <cmath> // for sqrt() function
 
 int main()
 {
-    std::cout << "Enter an integer: ";
-    int x{};
+    double x{};
+tryAgain: // this is a statement label
+    std::cout << "Enter a non-negative number: ";
     std::cin >> x;
 
-    std::cout << "Enter another integer: ";
-    int y{};
-    std::cin >> y;
+    if (x < 0.0)
+        goto tryAgain; // this is the goto statement
 
-    std::cout << "Enter a mathematical operator (+, -, *, /, or %): ";
-    char op{};
-    std::cin >> op;
-
-    int result{ calculate(x, y, op) };
-    std::cout << x << ' ' << op << ' ' << y << " is " << result << '\n';
-
+    std::cout << "The square root of " << x << " is " << std::sqrt(x) << '\n';
     return 0;
 }
