@@ -2,25 +2,25 @@
 
 int main()
 {
-    for (int i = 1; i < 5; ++i)
+    // outer loops between 1 and 5
+    int outer{ 1 };
+    while (outer <= 5)
     {
-        for (int j = 1; j < 5; ++j)
-        {
-            std::cout << i << " * " << j << " is " << i*j << '\n';
+        // For each iteration of the outer loop, the code in the body of the loop executes once
 
-            // If the product is divisible by 9, jump to the "end" label
-            if (i*j % 9 == 0)
-            {
-                std::cout << "Found product divisible by 9.  Ending early.\n";
-                goto end;
-            }
+        // inner loops between 1 and outer
+        // note: inner will be created and destroyed at the end of the block
+        int inner{ 1 };
+        while (inner <= outer)
+        {
+            std::cout << inner << ' ';
+            ++inner;
         }
 
-        std::cout << "Incrementing the first factor.\n";
-    }
-
-end:
-    std::cout << "And we're done." << '\n';
+        // print a newline at the end of each row
+        std::cout << '\n';
+        ++outer;
+    } // inner destroyed here
 
     return 0;
 }
