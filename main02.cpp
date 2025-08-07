@@ -1,16 +1,33 @@
+// Thanks to Shiva for this solution
 #include <iostream>
-#include <cmath> // for sqrt() function
 
 int main()
 {
-    double x{};
-tryAgain: // this is a statement label
-    std::cout << "Enter a non-negative number: ";
-    std::cin >> x;
+	// There are 5 rows, we can loop from 1 to 5
+	int outer{ 1 };
 
-    if (x < 0.0)
-        goto tryAgain; // this is the goto statement
+	while (outer <= 5)
+	{
+		// Row elements appear in descending order, so start from 5 and loop through to 1
+		int inner{ 5 };
 
-    std::cout << "The square root of " << x << " is " << std::sqrt(x) << '\n';
-    return 0;
+		while (inner >= 1)
+		{
+			// The first number in any row is the same as the row number
+			// So number should be printed only if it is <= the row number, space otherwise
+			if (inner <= outer)
+				std::cout << inner << ' '; // print the number and a single space
+			else
+				std::cout << "  "; // don't print a number, but print two spaces
+
+			--inner;
+		}
+
+		// A row has been printed, move to the next row
+		std::cout << '\n';
+
+		++outer;
+	}
+
+	return 0;
 }

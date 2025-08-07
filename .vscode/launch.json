@@ -3,25 +3,43 @@
   "configurations": [
     {
       "name": "Run main.exe",
-      "type": "cppvsdbg",
+      "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/main.exe",
       "args": [],
-      "stopAtEntry": false,
+      "stopAtEntry": true,
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
-      "preLaunchTask": "Build main"
+      "preLaunchTask": "Build main",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb.exe",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
     },
     {
       "name": "Run main02.exe",
-      "type": "cppvsdbg",
+      "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/main02.exe",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
-      "preLaunchTask": "Build main02"
+      "preLaunchTask": "Build main02",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb.exe",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
     }
   ]
 }
