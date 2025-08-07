@@ -1,32 +1,15 @@
-// Thanks to Shiva for this solution
 #include <iostream>
 
 int main()
 {
-	// There are 5 rows, we can loop from 1 to 5
-	int outer{ 1 };
-
-	while (outer <= 5)
+	for (char c{ 'a' }; c <= 'e'; ++c) // outer loop on letters
 	{
-		// Row elements appear in descending order, so start from 5 and loop through to 1
-		int inner{ 5 };
+		std::cout << c; // print our letter first
 
-		while (inner >= 1)
-		{
-			// The first number in any row is the same as the row number
-			// So number should be printed only if it is <= the row number, space otherwise
-			if (inner <= outer)
-				std::cout << inner << ' '; // print the number and a single space
-			else
-				std::cout << "  "; // don't print a number, but print two spaces
+		for (int i{ 0 }; i < 3; ++i) // inner loop on all numbers
+			std::cout << i;
 
-			--inner;
-		}
-
-		// A row has been printed, move to the next row
 		std::cout << '\n';
-
-		++outer;
 	}
 
 	return 0;

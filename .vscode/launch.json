@@ -7,12 +7,12 @@
       "request": "launch",
       "program": "${workspaceFolder}/main.exe",
       "args": [],
-      "stopAtEntry": true,
+      "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
       "preLaunchTask": "Build main",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb.exe",
+      "externalConsole": false,
       "setupCommands": [
         {
           "description": "Enable pretty-printing",
@@ -29,10 +29,10 @@
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
       "preLaunchTask": "Build main02",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb.exe",
+      "externalConsole": false,
       "setupCommands": [
         {
           "description": "Enable pretty-printing",

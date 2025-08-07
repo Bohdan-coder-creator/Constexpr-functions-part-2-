@@ -1,17 +1,18 @@
 #include <iostream>
 
+int sumTo(int chislo)
+{
+	int count{};
+	for (int i = 1; i <= chislo; i++)
+		count += i;
+	return count;
+}
+
 int main()
 {
-	int outer{5};
-
-	while (outer >= 1)
-	{
-		int inner{outer};
-		while (inner >= 1)
-		{
-			std::cout << inner-- << " ";
-		}
-		std::cout << "\n";
-		--outer;
-	}
+	int number{};
+	std::cout << "Write a number: ";
+	std::cin >> number;
+	std::cout << "The answer is: " << sumTo(number);
+	return 0;
 }
