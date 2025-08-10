@@ -1,41 +1,45 @@
+// Make sure that assert triggers even if we compile in release mode
+#undef NDEBUG
+
+#include <cassert> // for assert
 #include <iostream>
 
-unsigned int g_state{ 0 };
-
-void seedPRNG(unsigned int seed)
+// Non-optimized version
+bool isPrime(int x)
 {
-    g_state = seed;
-}
+    if (x <= 1) // if x is negative, 0, or 1 then the number is not prime
+        return false;
 
-// For illustrative purposes only, don't use this
-unsigned int LCG16() // our PRNG
-{
-    // We modify the state using large constants and intentional overflow to make it hard
-    // for someone to casually determine what the next number in the sequence will be.
-
-    g_state = 8253729 * g_state + 2396403; // first we modify the state
-    return g_state % 32768; // then we use the new state to generate the next number in the sequence
-}
-
-void print10()
-{
-    // Print 10 random numbers
-    for (int count{ 1 }; count <= 10; ++count)
+    for (int test{ 2 }; test < x; ++test)
     {
-        std::cout << LCG16() << '\t';
+        if (x % test == 0) // if x is evenly divisible
+            return false;  // then this number isn't prime
     }
 
-    std::cout << '\n';
+    return true; // if we didn't find any divisors, then x must be prime
 }
 
 int main()
 {
-    unsigned int x {};
-    std::cout << "Enter a seed value: ";
-    std::cin >> x;
+    assert(!isPrime(0));
+    assert(!isPrime(1));
+    assert(isPrime(2));
+    assert(isPrime(3));
+    assert(!isPrime(4));
+    assert(isPrime(5));
+    assert(isPrime(7));
+    assert(!isPrime(9));
+    assert(isPrime(11));
+    assert(isPrime(13));
+    assert(!isPrime(15));
+    assert(!isPrime(16));
+    assert(isPrime(17));
+    assert(isPrime(19));
+    assert(isPrime(97));
+    assert(!isPrime(99));
+    assert(isPrime(13417));
 
-    seedPRNG(x); // seed our PRNG
-    print10();   // generate 10 random values
+    std::cout << "Success!\n";
 
     return 0;
 }

@@ -53,6 +53,8 @@
         "variant": "cpp",
         "iomanip": "cpp",
         "sstream": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "chrono": "cpp",
+        "ratio": "cpp"
     }
 }

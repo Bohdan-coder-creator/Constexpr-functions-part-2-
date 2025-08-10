@@ -1,30 +1,61 @@
 #include <iostream>
 
-// For illustrative purposes only, don't use this
-unsigned int LCG16() // our PRNG
+namespace Constants
 {
-    static unsigned int s_state{ 0 }; // only initialized the first time this function is called
+    const double gravity { 9.8 };
+}
 
-    // Generate the next number
+// Gets tower height from user and returns it
+double getTowerHeight()
+{
+	std::cout << "Enter the height of the tower in meters: ";
+	double towerHeight{};
+	std::cin >> towerHeight;
+	return towerHeight;
+}
 
-    // We modify the state using large constants and intentional overflow to make it hard
-    // for someone to casually determine what the next number in the sequence will be.
+// Returns the current ball height after "seconds" seconds
+double calculateBallHeight(double towerHeight, int seconds)
+{
+	// Using formula: s = (u * t) + (a * t^2) / 2
+	// here u (initial velocity) = 0, so (u * t) = 0
+	const double fallDistance { Constants::gravity * (seconds * seconds) / 2.0 };
+	const double ballHeight { towerHeight - fallDistance };
 
-    s_state = 8253729 * s_state + 2396403; // first we modify the state
-    return s_state % 32768; // then we use the new state to generate the next number in the sequence
+	// If the ball would be under the ground, place it on the ground
+	if (ballHeight < 0.0)
+		return 0.0;
+
+	return ballHeight;
+}
+
+// Prints ball height above ground
+void printBallHeight(double ballHeight, int seconds)
+{
+	if (ballHeight > 0.0)
+		std::cout << "At " << seconds << " seconds, the ball is at height: " << ballHeight << " meters\n";
+	else
+		std::cout << "At " << seconds << " seconds, the ball is on the ground.\n";
+}
+
+// Calculates the current ball height and then prints it
+// This is a helper function to make it easier to do this
+double calculateAndPrintBallHeight(double towerHeight, int seconds)
+{
+	const double ballHeight{ calculateBallHeight(towerHeight, seconds) };
+	printBallHeight(ballHeight, seconds);
+    return ballHeight;
 }
 
 int main()
 {
-    // Print 100 random numbers
-    for (int count{ 1 }; count <= 100; ++count)
-    {
-        std::cout << LCG16() << '\t';
+	const double towerHeight{ getTowerHeight() };
 
-        // If we've printed 10 numbers, start a new row
-        if (count % 10 == 0)
-            std::cout << '\n';
-    }
+	int seconds { 0 };
+	while (calculateAndPrintBallHeight(towerHeight, seconds) > 0.0)
+	{
+		++seconds;
+	}
 
-    return 0;
+	return 0;
 }

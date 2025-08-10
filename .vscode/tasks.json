@@ -8,6 +8,7 @@
       "args": [
         "-g",
         "${workspaceFolder}/main.cpp",
+        "${workspaceFolder}/random.h",
         "-o",
         "${workspaceFolder}/main.exe"
       ],
@@ -23,6 +24,20 @@
         "${workspaceFolder}/main02.cpp",
         "-o",
         "${workspaceFolder}/main02.exe"
+      ],
+      "group": "build",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Build main03",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-g",
+        "${workspaceFolder}/main03.cpp",
+        "${workspaceFolder}/random.h",
+        "-o",
+        "${workspaceFolder}/main03.exe"
       ],
       "group": "build",
       "problemMatcher": ["$gcc"]
