@@ -1,21 +1,21 @@
 #include <iostream>
 #include "Random.h"
 
-bool playHilo(int guesses, int min, int max)
+bool playHiLo(int guesses, int min, int max)
 {
-    std::cout << "Let's play a game. I'm thinking of a number between " << min << " and " << max << ". You have " << guesses << " tries to guess what it is.\n";
+    std::cout << "Let's play a game. I'm thinking about a number between " << min << " and " << max << ". You have " << guesses << " tries to guess what it is.\n";
 
     const int number{Random::get(min, max)};
 
     for (int count{1}; count <= guesses; ++count)
     {
-        std::cout << "Guess #" << count << ": ";
+        std::cout << "Count #" << count << ": ";
         int guess{};
         std::cin >> guess;
 
-        if(guess > number)
+        if (guess > number)
             std::cout << "Your guess is too high.\n";
-        else if(guess < number)
+        else if (guess < number)
             std::cout << "Your guess is too low.\n";
         else
         {
@@ -23,17 +23,15 @@ bool playHilo(int guesses, int min, int max)
             return true;
         }
     }
-
-    std::cout << "Sorry, you lose. The correct number was " << number << "\n";
     return false;
 }
 
 bool playAgain()
 {
-    while(true)
+    while (true)
     {
+        std::cout << "Would you like to play again? (y/n) ";
         char choice{};
-        std::cout << "Do you want to play again? (y/n) ";
         std::cin >> choice;
         switch (choice)
         {
@@ -41,7 +39,7 @@ bool playAgain()
                 return true;
             case 'n':
             {
-                std::cout << "Thank you for playing.";
+                std::cout << "Thank you for playing.\n";
                 return false;
             }
         }
@@ -56,8 +54,6 @@ int main()
 
     do
     {
-        playHilo(guesses, min, max);
+        playHiLo(guesses, min, max);
     } while (playAgain());
-
-    return 0;
 }
