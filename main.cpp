@@ -1,61 +1,49 @@
 #include <iostream>
 
-namespace Constants
+double getDouble()
 {
-    const double gravity { 9.8 };
+    std::cout << "Enter a decimal number: ";
+    double x{};
+    std::cin >> x;
+    return x;
 }
 
-// Gets tower height from user and returns it
-double getTowerHeight()
+char getOperator() // this is bullshit
 {
-	std::cout << "Enter the height of the tower in meters: ";
-	double towerHeight{};
-	std::cin >> towerHeight;
-	return towerHeight;
+    std::cout << "Enter one of the following: +, -, *, or /: ";
+    char op{};
+    std::cin >> op;
+    return op;
 }
 
-// Returns the current ball height after "seconds" seconds
-double calculateBallHeight(double towerHeight, int seconds)
+void printResult(double x, char operation, double y)
 {
-	// Using formula: s = (u * t) + (a * t^2) / 2
-	// here u (initial velocity) = 0, so (u * t) = 0
-	const double fallDistance { Constants::gravity * (seconds * seconds) / 2.0 };
-	const double ballHeight { towerHeight - fallDistance };
+    std::cout << x << ' ' << operation << ' ' << y << " is ";
 
-	// If the ball would be under the ground, place it on the ground
-	if (ballHeight < 0.0)
-		return 0.0;
-
-	return ballHeight;
-}
-
-// Prints ball height above ground
-void printBallHeight(double ballHeight, int seconds)
-{
-	if (ballHeight > 0.0)
-		std::cout << "At " << seconds << " seconds, the ball is at height: " << ballHeight << " meters\n";
-	else
-		std::cout << "At " << seconds << " seconds, the ball is on the ground.\n";
-}
-
-// Calculates the current ball height and then prints it
-// This is a helper function to make it easier to do this
-double calculateAndPrintBallHeight(double towerHeight, int seconds)
-{
-	const double ballHeight{ calculateBallHeight(towerHeight, seconds) };
-	printBallHeight(ballHeight, seconds);
-    return ballHeight;
+    switch (operation)
+    {
+    case '+':
+        std::cout << x + y << '\n';
+        return;
+    case '-':
+        std::cout << x - y << '\n';
+        return;
+    case '*':
+        std::cout << x * y << '\n';
+        return;
+    case '/':
+        std::cout << x / y << '\n';
+        return;
+    }
 }
 
 int main()
 {
-	const double towerHeight{ getTowerHeight() };
+    double x{ getDouble() };
+    char operation{ getOperator() };
+    double y{ getDouble() };
 
-	int seconds { 0 };
-	while (calculateAndPrintBallHeight(towerHeight, seconds) > 0.0)
-	{
-		++seconds;
-	}
+    printResult(x, operation, y);
 
-	return 0;
-}
+    return 0;
+} // the right one is in main02.cpp
