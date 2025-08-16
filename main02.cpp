@@ -1,15 +1,9 @@
-void someFcn(int i)
-{
-}
+#include <iostream>
+#include <typeinfo> // for typeid()
 
 int main()
 {
-    double d{ 5.0 };
-
-    someFcn(d); // bad: implicit narrowing conversion will generate compiler warning
-
-    // good: we're explicitly telling the compiler this narrowing conversion is intentional
-    someFcn(static_cast<int>(d)); // no warning generated
+    std::cout << typeid(5u-10).name() << ' ' << 5u - 10 << '\n'; // 5u means treat 5 as an unsigned integer
 
     return 0;
 }
