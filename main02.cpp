@@ -1,9 +1,18 @@
-#include <iostream>
-#include <typeinfo> // for typeid()
+#include <string> // for std::string
+#include <vector> // for std::vector
+#include <utility> // for std::pair
+
+using VectPairSI = std::vector<std::pair<std::string, int>>; // make VectPairSI an alias for this crazy type
+
+bool hasDuplicates(VectPairSI pairlist) // use VectPairSI in a function parameter
+{
+    // some code here
+    return false;
+}
 
 int main()
 {
-    std::cout << typeid(5u-10).name() << ' ' << 5u - 10 << '\n'; // 5u means treat 5 as an unsigned integer
+     VectPairSI pairlist; // instantiate a VectPairSI variable
 
-    return 0;
-}
+     return 0;
+} // Much better! Now we only have to type VectPairSI instead of std::vector<std::pair<std::string, int>>
