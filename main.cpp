@@ -1,17 +1,8 @@
-#include <string> // for std::string
-#include <vector> // for std::vector
-#include <utility> // for std::pair
-
-bool hasDuplicates(std::vector<std::pair<std::string, int>> pairlist)
-{
-    // some code here
-    return false;
-}
-
 int main()
 {
-     std::vector<std::pair<std::string, int>> pairlist;
+    auto d { 5.0 }; // 5.0 is a double literal, so d will be deduced as a double
+    auto i { 1 + 2 }; // 1 + 2 evaluates to an int, so i will be deduced as an int
+    auto x { i }; // i is an int, so x will be deduced as an int
 
-     return 0;
+    return 0;
 }
-// check main02.cpp now

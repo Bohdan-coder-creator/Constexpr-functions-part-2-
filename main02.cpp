@@ -1,18 +1,11 @@
-#include <string> // for std::string
-#include <vector> // for std::vector
-#include <utility> // for std::pair
-
-using VectPairSI = std::vector<std::pair<std::string, int>>; // make VectPairSI an alias for this crazy type
-
-bool hasDuplicates(VectPairSI pairlist) // use VectPairSI in a function parameter
+int add(int x, int y)
 {
-    // some code here
-    return false;
+    return x + y;
 }
 
 int main()
 {
-     VectPairSI pairlist; // instantiate a VectPairSI variable
+    auto sum { add(5, 6) }; // add() returns an int, so sum's type will be deduced as an int
 
-     return 0;
-} // Much better! Now we only have to type VectPairSI instead of std::vector<std::pair<std::string, int>>
+    return 0;
+}

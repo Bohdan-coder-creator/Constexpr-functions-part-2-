@@ -1,10 +1,18 @@
-int gradeTest();
+#include <string>
+#include <string_view>
 
-/*We can see that the return value is an integer, but what does the integer mean? A letter grade? The number of questions missed? 
-The student’s ID number? An error code? Who knows! The return type of int does not tell us much. If we’re lucky, documentation 
-for the function exists somewhere that we can reference. If we’re unlucky, we have to read the code and infer the purpose.
+int main()
+{
+    using namespace std::literals; // easiest way to access the s and sv suffixes
 
-Now let’s do an equivalent version using a type alias:*/
+    auto s1 { "goo"s };  // "goo"s is a std::string literal, so s1 will be deduced as a std::string
+    auto s2 { "moo"sv }; // "moo"sv is a std::string_view literal, so s2 will be deduced as a std::string_view
 
-using TestScore = int;
-TestScore gradeTest();
+    constexpr double a { 3.4 };  // a has type const double (constexpr not part of type, const is implicit)
+
+    auto b { a };                // b has type double (const dropped)
+    const auto c { a };          // c has type const double (const dropped but reapplied)
+    constexpr auto d { a };      // d has type const double (const dropped but implicitly reapplied by constexpr)
+
+    return 0;
+}
