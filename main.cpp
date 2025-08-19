@@ -1,8 +1,26 @@
+#include <iostream>
+
+namespace constants
+{
+    constexpr double pi { 3.14159 };
+}
+
+using Degrees = double;         // I have added these two lines of code
+using Radians = double;
+
+double convertToRadians(double degrees)
+{
+    return degrees * constants::pi / 180;
+}
+
 int main()
 {
-    auto d { 5.0 }; // 5.0 is a double literal, so d will be deduced as a double
-    auto i { 1 + 2 }; // 1 + 2 evaluates to an int, so i will be deduced as an int
-    auto x { i }; // i is an int, so x will be deduced as an int
+    std::cout << "Enter a number of degrees: ";
+    Degrees degrees{};
+    std::cin >> degrees;
+
+    Radians radians { convertToRadians(degrees) };
+    std::cout << degrees << " degrees is " << radians << " radians.\n";
 
     return 0;
 }
