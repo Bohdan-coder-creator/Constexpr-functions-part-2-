@@ -1,26 +1,26 @@
 #include <iostream>
 
-namespace constants
+int add(int x, int y) // integer version
 {
-    constexpr double pi { 3.14159 };
+    return x + y;
 }
 
-using Degrees = double;         // I have added these two lines of code
-using Radians = double;
-
-double convertToRadians(double degrees)
+double add(double x, double y) // integer version
 {
-    return degrees * constants::pi / 180;
+    return x + y;
 }
 
 int main()
 {
-    std::cout << "Enter a number of degrees: ";
-    Degrees degrees{};
-    std::cin >> degrees;
-
-    Radians radians { convertToRadians(degrees) };
-    std::cout << degrees << " degrees is " << radians << " radians.\n";
+    std::cout << add(1, 2); // calls add(int, int)
+    std::cout << '\n';
+    std::cout << add(1.2, 3.4); // calls add(double, double)
 
     return 0;
-}
+} 
+/*
+Fortunately, C++ has an elegant solution to handle such cases. 
+Function overloading allows us to create multiple functions with the same name, 
+so long as each identically named function has different parameter types (or the functions can be otherwise differentiated). 
+Each function sharing a name (in the same scope) is called an overloaded function (sometimes called an overload for short).
+*/
