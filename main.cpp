@@ -1,26 +1,28 @@
 #include <iostream>
 
-int add(int x, int y) // integer version
+void print(char, int)
 {
-    return x + y;
+	std::cout << 'a' << '\n';
 }
 
-double add(double x, double y) // integer version
+void print(char, double)
 {
-    return x + y;
+	std::cout << 'b' << '\n';
+}
+
+void print(char, float)
+{
+	std::cout << 'c' << '\n';
 }
 
 int main()
 {
-    std::cout << add(1, 2); // calls add(int, int)
-    std::cout << '\n';
-    std::cout << add(1.2, 3.4); // calls add(double, double)
+	print('x', 'a');
 
-    return 0;
-} 
+	return 0;
+}
 /*
-Fortunately, C++ has an elegant solution to handle such cases. 
-Function overloading allows us to create multiple functions with the same name, 
-so long as each identically named function has different parameter types (or the functions can be otherwise differentiated). 
-Each function sharing a name (in the same scope) is called an overloaded function (sometimes called an overload for short).
+In the above program, all functions match the first argument exactly. 
+However, the top function matches the second parameter via promotion, whereas the other functions require a conversion. 
+Therefore, print(char, int) is unambiguously the best match.
 */
