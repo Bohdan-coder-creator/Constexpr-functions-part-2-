@@ -1,28 +1,15 @@
 #include <iostream>
 
-void print(char, int)
+void printInt(int x)
 {
-	std::cout << 'a' << '\n';
-}
-
-void print(char, double)
-{
-	std::cout << 'b' << '\n';
-}
-
-void print(char, float)
-{
-	std::cout << 'c' << '\n';
+    std::cout << x << '\n';
 }
 
 int main()
 {
-	print('x', 'a');
+    printInt(5);    // okay: prints 5
+    printInt('a');  // prints 97 -- does this make sense?
+    printInt(true); // print 1 -- does this make sense?
 
-	return 0;
+    return 0;
 }
-/*
-In the above program, all functions match the first argument exactly. 
-However, the top function matches the second parameter via promotion, whereas the other functions require a conversion. 
-Therefore, print(char, int) is unambiguously the best match.
-*/

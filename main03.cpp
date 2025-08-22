@@ -1,16 +1,21 @@
-void foo(int)
+#include <iostream>
+
+void printInt(int x)
 {
+    std::cout << x << '\n';
 }
 
-void foo(double)
-{
-}
+void printInt(char) = delete; // calls to this function will halt compilation
+void printInt(bool) = delete; // calls to this function will halt compilation
 
 int main()
 {
-    foo('a');  // promoted to match foo(int)
-    foo(true); // promoted to match foo(int)
-    foo(4.5f); // promoted to match foo(double)
+    printInt(97);   // okay
+
+    printInt('a');  // compile error: function deleted
+    printInt(true); // compile error: function deleted
+
+    printInt(5.0);  // compile error: ambiguous match
 
     return 0;
 }

@@ -1,22 +1,23 @@
-// We haven't covered classes yet, so don't worry if this doesn't make sense
-class X // this defines a new type called X
-{
-public:
-    operator int() { return 0; } // Here's a user-defined conversion from X to int
-};
+#include <iostream>
 
-void foo(int)
+void printInt(int x)
 {
+    std::cout << x << '\n';
 }
 
-void foo(double)
-{
-}
+// This function template will take precedence for arguments of other types
+// Since this function template is deleted, calls to it will halt compilation
+template <typename T>
+void printInt(T x) = delete;
 
 int main()
 {
-    X x; // Here, we're creating an object of type X (named x)
-    foo(x); // x is converted to type int using the user-defined conversion from X to int
+    printInt(97);   // okay
+
+    printInt('a');  // compile error: function deleted
+    printInt(true); // compile error: function deleted
+
+    printInt(5.0);  // compile error: ambiguous match
 
     return 0;
 }
