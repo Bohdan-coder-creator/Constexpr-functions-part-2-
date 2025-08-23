@@ -1,15 +1,15 @@
+#include "random.h"
 #include <iostream>
 
-void printInt(int x)
+void print(int x, int y)
 {
-    std::cout << x << '\n';
+    std::cout << "x: " << x << '\n';
+    std::cout << "y: " << y << '\n';
 }
 
 int main()
 {
-    printInt(5);    // okay: prints 5
-    printInt('a');  // prints 97 -- does this make sense?
-    printInt(true); // print 1 -- does this make sense?
+    print(5);
 
     return 0;
 }

@@ -1,23 +1,21 @@
 #include <iostream>
+#include <string_view>
 
-void printInt(int x)
+void print(std::string_view s)
 {
-    std::cout << x << '\n';
+    std::cout << s << '\n';
 }
 
-// This function template will take precedence for arguments of other types
-// Since this function template is deleted, calls to it will halt compilation
-template <typename T>
-void printInt(T x) = delete;
+void print(char c = ' ')
+{
+    std::cout << c << '\n';
+}
 
 int main()
 {
-    printInt(97);   // okay
-
-    printInt('a');  // compile error: function deleted
-    printInt(true); // compile error: function deleted
-
-    printInt(5.0);  // compile error: ambiguous match
+    print("Hello, world"); // resolves to print(std::string_view)
+    print('a');            // resolves to print(char)
+    print();               // resolves to print(char)
 
     return 0;
 }

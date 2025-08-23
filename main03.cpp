@@ -1,21 +1,14 @@
 #include <iostream>
 
-void printInt(int x)
-{
-    std::cout << x << '\n';
-}
-
-void printInt(char) = delete; // calls to this function will halt compilation
-void printInt(bool) = delete; // calls to this function will halt compilation
+void print(int x);                  // signature print(int)
+void print(int x, int y = 10);      // signature print(int, int)
+void print(int x, double y = 20.5); // signature print(int, double)
 
 int main()
 {
-    printInt(97);   // okay
-
-    printInt('a');  // compile error: function deleted
-    printInt(true); // compile error: function deleted
-
-    printInt(5.0);  // compile error: ambiguous match
+    print(1, 2);   // will resolve to print(int, int)
+    print(1, 2.5); // will resolve to print(int, double)
+    print(1);      // ambiguous function call
 
     return 0;
 }
