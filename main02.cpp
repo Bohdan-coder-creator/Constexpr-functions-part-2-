@@ -1,21 +1,19 @@
-#include <iostream>
-#include <string_view>
-
-void print(std::string_view s)
+// T is a type template parameter
+// double is a non-template parameter
+// We don't need to provide names for these parameters since they aren't used
+template <typename T>
+int someFcn(T, double)
 {
-    std::cout << s << '\n';
-}
-
-void print(char c = ' ')
-{
-    std::cout << c << '\n';
+    return 5;
 }
 
 int main()
 {
-    print("Hello, world"); // resolves to print(std::string_view)
-    print('a');            // resolves to print(char)
-    print();               // resolves to print(char)
+    someFcn(1, 3.4); // matches someFcn(int, double)
+    someFcn(1, 3.4f); // matches someFcn(int, double) -- the float is promoted to a double
+    someFcn(1.2, 3.4); // matches someFcn(double, double)
+    someFcn(1.2f, 3.4); // matches someFcn(float, double)
+    someFcn(1.2f, 3.4f); // matches someFcn(float, double) -- the float is promoted to a double
 
     return 0;
 }
