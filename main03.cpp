@@ -1,20 +1,34 @@
+// Function templates may be overloaded
 #include <iostream>
-#include <string>
 
+// Add two values with matching types
 template <typename T>
-T addOne(T x)
+auto add(T x, T y)
 {
-    return x + 1;
+    return x + y;
 }
 
-// Use function template specialization to tell the compiler that addOne(const char*) should emit a compilation error
-// const char* will match a string literal
-template <>
-const char* addOne(const char* x) = delete;
+// Add two values with non-matching types
+// As of C++20 we could also use auto add(auto x, auto y)
+template <typename T, typename U>
+auto add(T x, U y)
+{
+    return x + y;
+}
+
+// Add three values with any type
+// As of C++20 we could also use auto add(auto x, auto y, auto z)
+template <typename T, typename U, typename V>
+auto add(T x, U y, V z)
+{
+    return x + y + z;
+}
 
 int main()
 {
-    std::cout << addOne("Hello, world!") << '\n'; // compile error
+    std::cout << add(1.2, 3.4) << '\n'; // instantiates and calls add<double>()
+    std::cout << add(5.6, 7) << '\n';   // instantiates and calls add<double, int>()
+    std::cout << add(8, 9, 10) << '\n'; // instantiates and calls add<int, int, int>()
 
     return 0;
 }
