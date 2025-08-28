@@ -1,27 +1,16 @@
 #include <iostream>
 
-template <auto N>
-void print()
-{
-    std::cout << N << '\n';
-}
+template <typename T>
 
-template <>
-void print<5>() // note that this is print<5> and not print<int>
+T mult(T x, int y)
 {
-    std::cout << 5 << '\n';
-}
-
-template <>
-void print<'c'>() // note that this is print<`c`> and not print<char>
-{
-    std::cout << 'c' << '\n';
+    return x * y;
 }
 
 int main()
 {
-    print<5>();   // calls print<5>
-    print<'c'>(); // calls print<'c'>
+	std::cout << mult(2, 3) << '\n';
+	std::cout << mult(1.2, 3) << '\n';
 
-    return 0;
+	return 0;
 }

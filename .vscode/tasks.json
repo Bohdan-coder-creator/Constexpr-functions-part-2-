@@ -8,7 +8,7 @@
       "args": [
         "-g",
         "${workspaceFolder}/main.cpp",
-        "${workspaceFolder}/random.h",
+        "${workspaceFolder}/foo.cpp",
         "-o",
         "${workspaceFolder}/main.exe"
       ],
@@ -35,9 +35,34 @@
       "args": [
         "-g",
         "${workspaceFolder}/main03.cpp",
-        "${workspaceFolder}/random.h",
         "-o",
         "${workspaceFolder}/main03.exe"
+      ],
+      "group": "build",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Build main04",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-g",
+        "${workspaceFolder}/main04.cpp",
+        "-o",
+        "${workspaceFolder}/main04.exe"
+      ],
+      "group": "build",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Build main05",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-g",
+        "${workspaceFolder}/main05.cpp",
+        "-o",
+        "${workspaceFolder}/main05.exe"
       ],
       "group": "build",
       "problemMatcher": ["$gcc"]

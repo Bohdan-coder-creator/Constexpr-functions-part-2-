@@ -1,13 +1,12 @@
+#include "max.h" // import template definition for max<T>(T, T)
 #include <iostream>
 
-template <int N>
-
-void printNumber()
-{
-    std::cout << N;
-}
+void foo(); // forward declaration for function foo
 
 int main()
 {
-    printNumber<5>();
+    std::cout << max(3, 5) << '\n';
+    foo();
+
+    return 0;
 }
