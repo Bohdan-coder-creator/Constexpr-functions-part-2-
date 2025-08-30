@@ -1,18 +1,20 @@
-#include <iostream>
-
-constexpr int greater(int x, int y)
+consteval int goo(int c)    // c is not constexpr, and cannot be used in constant expressions
 {
-    return (x > y ? x : y);
+    return c;
+}
+
+constexpr int foo(int b)    // b is not constexpr, and cannot be used in constant expressions
+{
+    constexpr int b2 { b }; // compile error: constexpr variable requires constant expression initializer
+
+    return goo(b);          // compile error: consteval function call requires constant expression argument
 }
 
 int main()
 {
-    int x{ 5 }; // not constexpr
-    int y{ 6 }; // not constexpr
+    constexpr int a { 5 };
 
-    std::cout << greater(x, y) << " is greater!\n"; // will be evaluated at runtime
+    std::cout << foo(a); // okay: constant expression a can be used as argument to constexpr function foo()
 
     return 0;
 }
-// In this example, because arguments x and y are not constant expressions, the function cannot be resolved at compile-time. 
-// However, the function will still be resolved at runtime, returning the expected value as a non-constexpr int.
